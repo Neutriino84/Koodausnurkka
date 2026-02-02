@@ -1,0 +1,195 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #05060a;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.logo-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.logo {
+  position: relative;
+  font-size: 165px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  background: linear-gradient(135deg, #fdf5c0 0%, #f1c15b 35%, #b8862b 70%, #fff6d9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 0 8px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(0, 0, 0, 0.9);
+}
+
+/* Viistompi valojuova koko tekstin yli */
+.logo::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -40%;
+  width: 60%;
+  height: 140%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.0) 30%,
+    rgba(255, 255, 255, 1.0) 50%,
+    rgba(255, 255, 255, 0.0) 70%,
+    transparent 100%
+  );
+  transform: skewX(60deg);
+  animation: sweep 7.5s linear infinite;
+  mix-blend-mode: screen;
+  z-index: 7;
+  pointer-events: none;
+} 
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-120%) skewX(-30deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-30deg);
+  }
+}
+
+/* K-kirjain erikseen, jotta saadaan kiiltävä kulma */
+.logo span.k {
+  position: relative;
+  display: inline-block;
+  font-size: 1.2em;
+  color: #fff8d0;
+  text-shadow: 0 0 12px rgba(255, 255, 200, 0.8);
+}
+
+/* Tähtimäinen kiilto K:n vasempaan yläkulmaan */
+.logo span.k::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: -8%;
+  width: 26px;
+  height: 26px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.0) 30%),
+    linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 50%),
+    linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: scale(0.4) rotate(0deg);
+  animation: starBlink 5.8s ease-in-out infinite;
+}
+
+@keyframes starBlink {
+  0%, 60% {
+    opacity: 0;
+    transform: scale(0.2) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1) rotate(25deg);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.1) rotate(-15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+}
+.logo::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -40%;
+  width: 40%;
+  height: 140%;
+  background: linear-gradient(
+    60deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 100%
+  );
+  transform: skewX(-30deg);
+  animation: sweepShadow 7.5s linear infinite;
+  z-index: 2;
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+
+
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-120%) skewX(-30deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-30deg);
+  }
+}
+
+@keyframes sweepShadow {
+  0% {
+    transform: translateX(-120%) skewX(-30deg);
+  }
+  100% {
+    transform: translateX(520%) skewX(-30deg);
+  }
+}
+.leaf {
+  position: absolute;
+  left: -80px;
+  font-size: 50px;
+  animation: leafGlide linear infinite;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0; /* ← tämä piilottaa lehden alussa */
+}
+
+
+/* Ylälinja */
+.leaf.top {
+  top: 20%;
+}
+
+/* Keskilinja */
+.leaf.middle {
+  top: 50%;
+}
+
+/* Alalinja */
+.leaf.bottom {
+  top: 80%;
+}
+@keyframes leafGlide {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110vw) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Eri viiveet ja kestot */
+.leaf:nth-child(1) { animation-delay: 0s; animation-duration: 8s; }
+.leaf:nth-child(2) { animation-delay: 2s; animation-duration: 9s; }
+.leaf:nth-child(3) { animation-delay: 4s; animation-duration: 10s; }
+.leaf:nth-child(4) { animation-delay: 1s; animation-duration: 7s; }
+.leaf:nth-child(5) { animation-delay: 3s; animation-duration: 8s; }
+.leaf:nth-child(6) { animation-delay: 5s; animation-duration: 9s; }
